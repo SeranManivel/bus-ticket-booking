@@ -15,27 +15,65 @@ This project follows industry-standard layered architecture and best practices.
 | MySQL | Relational Database |
 | Lombok | Reduce Boilerplate Code |
 | Bean Validation | Input Validation |
-| Swagger UI | API Documentation & Testing |
+| Swagger UI | API Documentation and Testing |
 | Maven | Build Tool |
 
 ---
 
 ## 📁 Project Structure
-
 src/main/java/com/demo/bus/
-├── entity/         → Database table classes
-├── dto/            → API request & response classes
-├── mapper/         → Converts Entity ↔ DTO
-├── repository/     → Database query interfaces
-├── service/        → Business logic interfaces
-│   └── impl/       → Business logic implementations
-├── controller/     → REST API endpoints
-└── exception/      → Custom exceptions & global handler
+│
+├── entity/
+│   ├── Bus.java
+│   ├── Route.java
+│   ├── Passenger.java
+│   └── Booking.java
+│
+├── dto/
+│   ├── BusDto.java
+│   ├── RouteDto.java
+│   ├── PassengerDto.java
+│   └── BookingDto.java
+│
+├── mapper/
+│   ├── BusMapper.java
+│   ├── RouteMapper.java
+│   ├── PassengerMapper.java
+│   └── BookingMapper.java
+│
+├── repository/
+│   ├── BusRepository.java
+│   ├── RouteRepository.java
+│   ├── PassengerRepository.java
+│   └── BookingRepository.java
+│
+├── service/
+│   ├── BusService.java
+│   ├── RouteService.java
+│   ├── PassengerService.java
+│   ├── BookingService.java
+│   └── impl/
+│       ├── BusServiceImpl.java
+│       ├── RouteServiceImpl.java
+│       ├── PassengerServiceImpl.java
+│       └── BookingServiceImpl.java
+│
+├── controller/
+│   ├── BusController.java
+│   ├── RouteController.java
+│   ├── PassengerController.java
+│   └── BookingController.java
+│
+└── exception/
+├── BusNotFoundException.java
+├── RouteNotFoundException.java
+├── PassengerNotFoundException.java
+├── BookingNotFoundException.java
+└── GlobalExceptionHandler.java
 
 ---
 
 ## 🗃️ Database Design
-
 Bus ──────────► Route ──────────► Booking ◄──────────── Passenger
 (1)            (Many)            (Many)                    (1)
 
@@ -51,7 +89,7 @@ Bus ──────────► Route ──────────► Bo
 - ✅ Define Routes with fare, distance and timings
 - ✅ Register Passengers with validation
 - ✅ Book Tickets with automatic fare assignment
-- ✅ Cancel Bookings (status → CANCELLED)
+- ✅ Cancel Bookings (status changes to CANCELLED)
 - ✅ Search Routes by Source and Destination
 - ✅ Pagination for all list APIs
 - ✅ Input Validation with meaningful error messages
@@ -114,31 +152,36 @@ Bus ──────────► Route ──────────► Bo
 
 ### Steps
 
-1. Clone the repository
+**1. Clone the repository**
+
 git clone https://github.com/SeranManivel/bus-ticket-booking.git
 cd bus-ticket-booking
 
-2. Create MySQL database
+**2. Create MySQL database**
+
 CREATE DATABASE bus_booking_db;
 
-3. Update application.properties
+**3. Update application.properties**
+
 spring.datasource.url=jdbc:mysql://localhost:3306/bus_booking_db
 spring.datasource.username=root
 spring.datasource.password=your_password
 
-4. Run the application
+**4. Run the application**
+
 ./mvnw spring-boot:run
 
-5. Open Swagger UI
+**5. Open Swagger UI**
+
 http://localhost:8080/swagger-ui.html
 
 ---
 
 ## 📝 Sample API Request
 
-Book a Ticket — POST /booking
+### Book a Ticket — POST /booking
 
-Request:
+Request Body:
 {
   "seatNumber": 5,
   "travelDate": "2026-06-15",
@@ -161,6 +204,6 @@ Response:
 
 ## 👨‍💻 Author
 
-Seran Manivel
-Java Full Stack Developer
-Qspiders — Chennai
+**Seran M**
+Java Backend Developer
+GitHub: https://github.com/SeranManivel
